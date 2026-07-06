@@ -1,0 +1,20 @@
+ALTER TABLE empresa
+    RENAME COLUMN nombre TO nombre_comercial;
+
+ALTER TABLE empresa
+    ADD COLUMN razon_social VARCHAR(200) NOT NULL DEFAULT '';
+
+ALTER TABLE empresa
+    ADD COLUMN email VARCHAR(150);
+
+ALTER TABLE empresa
+    ADD COLUMN telefono VARCHAR(30);
+
+ALTER TABLE empresa
+    ADD COLUMN logo VARCHAR(255);
+
+ALTER TABLE empresa
+    ADD COLUMN activo BOOLEAN NOT NULL DEFAULT TRUE;
+
+ALTER TABLE empresa
+    ADD COLUMN updated_at TIMESTAMP;

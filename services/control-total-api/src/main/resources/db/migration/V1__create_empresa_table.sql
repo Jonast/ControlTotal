@@ -1,0 +1,7 @@
+CREATE TABLE IF NOT EXISTS empresa
+(
+    id          UUID PRIMARY KEY,
+    nombre      VARCHAR(150) NOT NULL,
+    rut         VARCHAR(20) UNIQUE NOT NULL,
+    created_at  TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);

@@ -1,0 +1,60 @@
+package com.controltotal.infrastructure.controller;
+
+import com.controltotal.application.dto.request.CreateEmpresaRequest;
+import com.controltotal.application.dto.response.EmpresaResponse;
+import com.controltotal.application.usecase.empresa.create.CreateEmpresaUseCase;
+import com.controltotal.shared.response.ApiResponse;
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+@Tag(
+        name = "Empresas",
+        description = "Administración de empresas del sistema"
+)
+@RestController
+@RequestMapping("/api/v1/empresas")
+@RequiredArgsConstructor
+public class EmpresaController {
+
+    private final CreateEmpresaUseCase createEmpresaUseCase;
+
+    @Operation(
+            summary = "Crear empresa",
+            description = "Registra una nueva empresa en el sistema."
+    )
+    @ApiResponses({
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(
+                    responseCode = "201",
+                    description = "Empresa creada correctamente"
+            ),
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(
+                    responseCode = "400",
+                    description = "Datos de entrada inválidos"
+            ),
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(
+                    responseCode = "409",
+                    description = "Ya existe una empresa con el mismo RUT"
+            )
+    })
+    @PostMapping
+    public ResponseEntity<ApiResponse<EmpresaResponse>> create(
+            @Valid @RequestBody CreateEmpresaRequest request) {
+
+        EmpresaResponse response = createEmpresaUseCase.execute(request);
+
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(ApiResponse.success(
+                        "Empresa creada correctamente",
+                        response
+                ));
+    }
+}
