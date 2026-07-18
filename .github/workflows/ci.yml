@@ -14,7 +14,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: services/backend
+        working-directory: services/controltotal-api
 
     steps:
       - uses: actions/checkout@v4
