@@ -88,19 +88,7 @@ next: (response) => {
 
         console.error(error);
 
-        this.notification.error(
-
-          'Error al crear la empresa.',
-
-          'Cerrar',
-
-          {
-            duration: 4000,
-            horizontalPosition: 'end',
-            verticalPosition: 'top'
-          }
-
-        );
+        this.notification.error('Error al crear la empresa.');
 
       }
 
