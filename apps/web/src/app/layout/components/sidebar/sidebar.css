@@ -1,0 +1,53 @@
+.sidebar{
+
+    display:flex;
+
+    flex-direction:column;
+
+    width:250px;
+
+    height:100%;
+
+    background:#0F172A;
+
+    padding-top:20px;
+
+}
+
+.sidebar a{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:16px;
+
+    padding:14px 24px;
+
+    color:#CBD5E1;
+
+    text-decoration:none;
+
+    transition:.2s;
+
+}
+
+.sidebar a:hover{
+
+    background:#1E293B;
+
+}
+
+.sidebar a.active{
+
+    background:#2563EB;
+
+    color:white;
+
+}
+
+.sidebar mat-icon{
+
+    color:inherit;
+
+}

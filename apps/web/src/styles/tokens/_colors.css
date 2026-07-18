@@ -1,0 +1,24 @@
+:root {
+
+  --ct-primary: #2563EB;
+  --ct-primary-dark: #1D4ED8;
+
+  --ct-sidebar: #0F172A;
+
+  --ct-background: #F8FAFC;
+
+  --ct-surface: #FFFFFF;
+
+  --ct-text: #1E293B;
+
+  --ct-text-secondary: #64748B;
+
+  --ct-border: #E2E8F0;
+
+  --ct-success: #22C55E;
+
+  --ct-warning: #F59E0B;
+
+  --ct-danger: #EF4444;
+
+}

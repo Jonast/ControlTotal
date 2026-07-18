@@ -1,0 +1,33 @@
+.toolbar{
+
+    background:#FFFFFF;
+
+    color:#1E293B;
+
+    border-bottom:1px solid #E2E8F0;
+
+    height:64px;
+
+}
+
+.logo{
+
+    margin-left:12px;
+
+    font-size:20px;
+
+    font-weight:600;
+
+}
+
+.spacer{
+
+    flex:1;
+
+}
+
+mat-icon{
+
+    color:#475569;
+
+}
