@@ -3,6 +3,7 @@ package com.controltotal.infrastructure.controller;
 import com.controltotal.application.dto.request.CreateEmpresaRequest;
 import com.controltotal.application.dto.response.EmpresaResponse;
 import com.controltotal.application.usecase.empresa.create.CreateEmpresaUseCase;
+import com.controltotal.application.usecase.empresa.list.ListEmpresasUseCase;
 import com.controltotal.shared.response.ApiResponse;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -16,6 +17,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Tag(
         name = "Empresas",
         description = "Administración de empresas del sistema"
@@ -26,6 +29,7 @@ import org.springframework.web.bind.annotation.*;
 public class EmpresaController {
 
     private final CreateEmpresaUseCase createEmpresaUseCase;
+    private final ListEmpresasUseCase listEmpresasUseCase;
 
     @Operation(
             summary = "Crear empresa",
@@ -56,5 +60,28 @@ public class EmpresaController {
                         "Empresa creada correctamente",
                         response
                 ));
+    }
+
+    @Operation(
+            summary = "Listar empresas",
+            description = "Obtiene todas las empresas registradas."
+    )
+    @ApiResponses({
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(
+                    responseCode = "200",
+                    description = "Empresas obtenidas correctamente"
+            )
+    })
+    @GetMapping
+    public ResponseEntity<ApiResponse<List<EmpresaResponse>>> list() {
+
+        List<EmpresaResponse> response = listEmpresasUseCase.execute();
+
+        return ResponseEntity.ok(
+                ApiResponse.success(
+                        "Empresas obtenidas correctamente",
+                        response
+                )
+        );
     }
 }
