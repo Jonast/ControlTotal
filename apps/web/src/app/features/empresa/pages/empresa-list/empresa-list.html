@@ -1,0 +1,19 @@
+<app-page-header
+  title="Empresas"
+  subtitle="Administración de empresas">
+</app-page-header>
+
+<app-page-toolbar
+  placeholder="Buscar empresa..."
+  buttonText="Nueva Empresa"
+  (search)="onSearch($event)"
+  (buttonClick)="onNew()">
+</app-page-toolbar>
+
+<app-data-table
+  [columns]="columns"
+  [columnLabels]="columnLabels"
+  [data]="empresas"
+  (edit)="onEdit($event)"
+  (remove)="onDelete($event)">
+</app-data-table>
