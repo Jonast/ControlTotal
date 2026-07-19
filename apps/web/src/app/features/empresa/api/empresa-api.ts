@@ -25,4 +25,12 @@ export class EmpresaApi extends BaseApi {
 
   }
 
+  list(): Observable<ApiResponse<EmpresaResponse[]>> {
+
+    return this.http.get<ApiResponse<EmpresaResponse[]>>(
+      this.endpoint
+    );
+
+  }
+
 }

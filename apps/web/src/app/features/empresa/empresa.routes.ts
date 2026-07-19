@@ -4,8 +4,9 @@ export const EMPRESA_ROUTES: Routes = [
 
   {
     path: '',
-    redirectTo: 'nuevo',
-    pathMatch: 'full'
+    loadComponent: () =>
+      import('./pages/empresa-list/empresa-list')
+        .then(c => c.EmpresaListComponent)
   },
 
   {
