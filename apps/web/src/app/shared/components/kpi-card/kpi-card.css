@@ -1,0 +1,39 @@
+.card{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:20px;
+
+    padding:24px;
+
+    border-radius:16px;
+
+}
+
+mat-icon{
+
+    font-size:40px;
+
+    width:40px;
+
+    height:40px;
+
+    color:#2563EB;
+
+}
+
+h4{
+
+    margin:0;
+
+    color:#666;
+
+}
+
+h2{
+
+    margin:4px 0 0;
+
+}

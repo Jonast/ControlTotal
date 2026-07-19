@@ -1,0 +1,32 @@
+<p>page-toolbar works!</p>
+<div class="toolbar">
+
+    <mat-form-field appearance="outline">
+
+        <mat-label>{{ placeholder }}</mat-label>
+
+        <input
+            matInput
+            [(ngModel)]="value"
+            (keyup)="onSearch()">
+
+        <mat-icon matSuffix>search</mat-icon>
+
+    </mat-form-field>
+
+    @if(buttonText){
+
+        <button
+            mat-raised-button
+            color="primary"
+            (click)="onButtonClick()">
+
+            <mat-icon>add</mat-icon>
+
+            {{ buttonText }}
+
+        </button>
+
+    }
+
+</div>

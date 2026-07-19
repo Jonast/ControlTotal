@@ -1,0 +1,25 @@
+<div class="notification" [ngClass]="data.type">
+
+    <div class="icon">
+
+        @switch(data.type){
+
+            @case('success'){✔}
+
+            @case('error'){✖}
+
+            @case('warning'){⚠}
+
+            @default{ℹ}
+
+        }
+
+    </div>
+
+    <div class="message">
+
+        {{ data.message }}
+
+    </div>
+
+</div>

@@ -1,0 +1,17 @@
+.table{
+
+    width:100%;
+
+    background:white;
+
+    border-radius:12px;
+
+    overflow:hidden;
+
+}
+
+.mat-mdc-row:hover{
+
+    background:#F5F7FA;
+
+}

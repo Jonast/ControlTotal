@@ -1,0 +1,25 @@
+.toolbar{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:24px;
+
+    margin-bottom:24px;
+
+}
+
+mat-form-field{
+
+    width:380px;
+
+}
+
+button{
+
+    height:56px;
+
+}

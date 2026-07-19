@@ -1,0 +1,51 @@
+.notification{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+
+    min-width:340px;
+
+    padding:18px 22px;
+
+    border-radius:12px;
+
+    color:white;
+
+    font-size:15px;
+
+    font-weight:500;
+
+}
+
+.icon{
+
+    font-size:22px;
+
+}
+
+.success{
+
+    background:#16a34a;
+
+}
+
+.error{
+
+    background:#dc2626;
+
+}
+
+.warning{
+
+    background:#f59e0b;
+
+}
+
+.info{
+
+    background:#2563eb;
+
+}
