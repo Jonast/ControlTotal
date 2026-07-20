@@ -1,6 +1,6 @@
 <app-page-header
-  title="Nueva Empresa"
-  subtitle="Registra una nueva empresa en Control Total">
+  [title]="isEdit ? 'Editar Empresa' : 'Nueva Empresa'"
+  [subtitle]="isEdit ? 'Actualización de empresa' : 'Registro de empresa'">
 </app-page-header>
 
 <div class="form-container">
@@ -90,7 +90,7 @@
             color="primary"
             type="submit">
 
-            Guardar
+            {{ isEdit ? 'Actualizar' : 'Guardar' }}
 
           </button>
 
