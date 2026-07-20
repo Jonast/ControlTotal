@@ -6,6 +6,7 @@ import { ApiResponse } from '../../../core/http/api-response';
 
 import { CreateEmpresaRequest } from '../models/create-empresa-request';
 import { EmpresaResponse } from '../models/empresa-response';
+import { UpdateEmpresaRequest } from '../models/update-empresa-request';
 
 @Injectable({
   providedIn: 'root'
@@ -32,5 +33,25 @@ export class EmpresaApi extends BaseApi {
     );
 
   }
+
+  getById(id: string): Observable<ApiResponse<EmpresaResponse>> {
+
+  return this.http.get<ApiResponse<EmpresaResponse>>(
+    `${this.endpoint}/${id}`
+  );
+
+}
+
+update(
+  id: string,
+  request: UpdateEmpresaRequest
+): Observable<ApiResponse<EmpresaResponse>> {
+
+  return this.http.put<ApiResponse<EmpresaResponse>>(
+    `${this.endpoint}/${id}`,
+    request
+  );
+
+}
 
 }

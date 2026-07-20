@@ -14,6 +14,13 @@ export const EMPRESA_ROUTES: Routes = [
     loadComponent: () =>
       import('./pages/empresa-create/empresa-create')
         .then(c => c.EmpresaCreate)
+  },
+
+  {
+    path: 'editar/:id',
+    loadComponent: () =>
+      import('./pages/empresa-create/empresa-create')
+        .then(c => c.EmpresaCreate)
   }
 
 ];
