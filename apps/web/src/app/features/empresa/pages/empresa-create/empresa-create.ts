@@ -17,6 +17,11 @@ import { PageHeader } from '../../../../shared/ui/page-header/page-header';
 import { EmpresaApi } from '../../api/empresa-api';
 import { CreateEmpresaRequest } from '../../models/create-empresa-request';
 
+import { ActivatedRoute } from '@angular/router';
+import { OnInit } from '@angular/core';
+
+import { UpdateEmpresaRequest } from '../../models/update-empresa-request';
+
 @Component({
   selector: 'app-empresa-create',
   standalone: true,
@@ -31,7 +36,12 @@ import { CreateEmpresaRequest } from '../../models/create-empresa-request';
   templateUrl: './empresa-create.html',
   styleUrl: './empresa-create.css'
 })
-export class EmpresaCreate {
+export class EmpresaCreate implements OnInit {
+
+  private readonly route = inject(ActivatedRoute);
+  isEdit = false;
+  empresaId = '';
+
 
   private readonly fb = inject(FormBuilder);
   private readonly empresaApi = inject(EmpresaApi);
@@ -54,51 +64,135 @@ export class EmpresaCreate {
 
   });
 
-  guardar(): void {
+guardar(): void {
 
-    if (this.form.invalid) {
+  if (this.form.invalid) {
 
-      this.form.markAllAsTouched();
+    this.form.markAllAsTouched();
+
+    return;
+
+  }
+
+  if (this.isEdit) {
+
+    this.actualizar();
+
+    return;
+
+  }
+
+  this.crear();
+
+}
+
+private crear(): void {
+
+  const request =
+    this.form.getRawValue() as CreateEmpresaRequest;
+
+  this.empresaApi.create(request)
+    .subscribe({
+
+      next: response => {
+
+        this.notification.success(response.message);
+
+        this.router.navigate(['/empresas']);
+
+      },
+
+      error: () =>
+
+        this.notification.error(
+          'Error al crear la empresa.'
+        )
+
+    });
+
+}
+
+private actualizar(): void {
+
+  const request =
+    this.form.getRawValue() as UpdateEmpresaRequest;
+
+  this.empresaApi.update(
+      this.empresaId,
+      request
+    )
+    .subscribe({
+
+      next: response => {
+
+        this.notification.success(response.message);
+
+        this.router.navigate(['/empresas']);
+
+      },
+
+      error: () =>
+
+        this.notification.error(
+          'Error al actualizar la empresa.'
+        )
+
+    });
+
+}
+
+  cancelar(): void {
+
+    this.router.navigate(['/']);
+
+  }
+
+  ngOnInit(): void {
+
+    const id = this.route.snapshot.paramMap.get('id');
+
+    if (!id) {
 
       return;
 
     }
 
-    const request = this.form.getRawValue() as CreateEmpresaRequest;
+    this.isEdit = true;
 
-    this.empresaApi.create(request).subscribe({
+    this.empresaId = id;
 
-next: (response) => {
-
-    this.notification.success(
-
-        response.message
-
-    );
-
-    setTimeout(() => {
-
-        this.router.navigate(['/']);
-
-    }, 3000);
-
-},
-
-      error: (error) => {
-
-        console.error(error);
-
-        this.notification.error('Error al crear la empresa.');
-
-      }
-
-    });
+    this.cargarEmpresa();
 
   }
 
-  cancelar(): void {
+  private cargarEmpresa(): void {
 
-    this.router.navigate(['/']);
+    this.empresaApi.getById(this.empresaId)
+      .subscribe({
+
+        next: response => {
+
+          this.form.patchValue({
+
+            nombreComercial: response.data.nombreComercial,
+
+            razonSocial: response.data.razonSocial,
+
+            rut: response.data.rut,
+
+            email: response.data.email,
+
+            telefono: response.data.telefono,
+
+            logo: response.data.logo
+
+          });
+
+        },
+
+        error: error => console.error(error)
+
+      });
 
   }
 

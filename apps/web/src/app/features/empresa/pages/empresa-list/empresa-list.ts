@@ -109,11 +109,14 @@ export class EmpresaListComponent implements OnInit {
 
   }
 
-  onEdit(empresa: EmpresaResponse): void {
+ onEdit(empresa: EmpresaResponse): void {
 
-    console.log('Editar', empresa);
+  this.router.navigate([
+    '/empresas/editar',
+    empresa.id
+  ]);
 
-  }
+}
 
   onDelete(empresa: EmpresaResponse): void {
 
