@@ -1,18 +1,22 @@
-<app-header></app-header>
+<app-header
+    (toggleSidebar)="toggleSidebar()">
+</app-header>
 
 <div class="shell-container">
 
-  <app-sidebar></app-sidebar>
+    <app-sidebar
+        [collapsed]="sidebarCollapsed">
+    </app-sidebar>
 
-  <main class="main-content">
+    <main class="main-content">
 
-    <div class="content">
+        <div class="content">
 
-      <router-outlet></router-outlet>
+            <router-outlet></router-outlet>
 
-    </div>
+        </div>
 
-  </main>
+    </main>
 
 </div>
 
