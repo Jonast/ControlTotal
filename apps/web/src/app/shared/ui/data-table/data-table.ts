@@ -6,6 +6,7 @@ import {
   OnChanges,
   SimpleChanges
 } from '@angular/core';
+
 import { CommonModule } from '@angular/common';
 
 import { MatTableModule } from '@angular/material/table';
@@ -26,24 +27,32 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class DataTable implements OnChanges {
 
-  @Input() columns: string[] = [];
+  @Input()
+  columns: string[] = [];
 
-  @Input() columnLabels: Record<string, string> = {};
+  @Input()
+  columnLabels: Record<string, string> = {};
 
-  @Input() data: any[] = [];
+  @Input()
+  data: any[] = [];
 
-  @Input() showActions = true;
+  @Input()
+  showActions = true;
 
-  @Output() edit = new EventEmitter<any>();
+  @Output()
+  edit = new EventEmitter<any>();
 
-  @Output() remove = new EventEmitter<any>();
+  @Output()
+  remove = new EventEmitter<any>();
 
   displayedColumns: string[] = [];
 
   ngOnChanges(changes: SimpleChanges): void {
+
     this.displayedColumns = this.showActions
       ? [...this.columns, 'actions']
       : [...this.columns];
+
   }
 
 }

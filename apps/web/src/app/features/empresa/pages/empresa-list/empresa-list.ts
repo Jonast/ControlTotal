@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, inject } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { PageHeader } from '../../../../shared/ui/page-header/page-header';
@@ -25,6 +25,8 @@ export class EmpresaListComponent implements OnInit {
 
   private readonly router = inject(Router);
 
+  private readonly cdr = inject(ChangeDetectorRef);
+
   empresas: EmpresaResponse[] = [];
 
   empresasOriginal: EmpresaResponse[] = [];
@@ -38,42 +40,35 @@ export class EmpresaListComponent implements OnInit {
   ];
 
   columnLabels: Record<string, string> = {
-
     nombreComercial: 'Nombre Comercial',
-
     rut: 'RUT',
-
     email: 'Correo',
-
     telefono: 'Teléfono',
-
     activo: 'Estado'
-
   };
 
   ngOnInit(): void {
-
     this.load();
-
   }
 
-  load(): void {
+load(): void {
 
-    this.empresaApi.list().subscribe({
+  this.empresaApi.list().subscribe({
 
-      next: response => {
+    next: (response) => {
 
-        this.empresas = response.data;
+      this.empresas = [...response.data];
+      this.empresasOriginal = [...response.data];
 
-        this.empresasOriginal = [...response.data];
+      this.cdr.detectChanges();
 
-      },
+    },
 
-      error: error => console.error(error)
+    error: (error) => console.error(error)
 
-    });
+  });
 
-  }
+}
 
   onSearch(value: string): void {
 
@@ -90,13 +85,9 @@ export class EmpresaListComponent implements OnInit {
     this.empresas = this.empresasOriginal.filter(e =>
 
       e.nombreComercial.toLowerCase().includes(filter)
-
       ||
-
       e.rut.toLowerCase().includes(filter)
-
       ||
-
       e.email.toLowerCase().includes(filter)
 
     );
@@ -105,22 +96,46 @@ export class EmpresaListComponent implements OnInit {
 
   onNew(): void {
 
-    this.router.navigate(['empresas/nuevo']);
+    this.router.navigate(['/empresas/nuevo']);
 
   }
 
- onEdit(empresa: EmpresaResponse): void {
+  onEdit(empresa: EmpresaResponse): void {
 
-  this.router.navigate([
-    '/empresas/editar',
-    empresa.id
-  ]);
+    this.router.navigate([
+      '/empresas/editar',
+      empresa.id
+    ]);
 
-}
+  }
 
   onDelete(empresa: EmpresaResponse): void {
 
-    console.log('Eliminar', empresa);
+    const confirmar = window.confirm(
+      `¿Está seguro que desea eliminar la empresa "${empresa.nombreComercial}"?`
+    );
+
+    if (!confirmar) {
+      return;
+    }
+
+    this.empresaApi.delete(empresa.id).subscribe({
+
+          next: () => {
+
+          this.load();
+
+        },
+
+      error: (error) => {
+
+        console.error(error);
+
+        window.alert('No fue posible eliminar la empresa.');
+
+      }
+
+    });
 
   }
 
