@@ -1,53 +1,95 @@
-.sidebar{
+.sidebar {
 
-    display:flex;
+    display: flex;
+    flex-direction: column;
 
-    flex-direction:column;
+    width: 250px;
+    height: 100%;
 
-    width:250px;
+    background: #0F172A;
 
-    height:100%;
+    padding-top: 20px;
 
-    background:#0F172A;
+    transition: width .25s ease;
 
-    padding-top:20px;
-
-}
-
-.sidebar a{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:16px;
-
-    padding:14px 24px;
-
-    color:#CBD5E1;
-
-    text-decoration:none;
-
-    transition:.2s;
+    overflow: hidden;
 
 }
 
-.sidebar a:hover{
+.sidebar.collapsed {
 
-    background:#1E293B;
-
-}
-
-.sidebar a.active{
-
-    background:#2563EB;
-
-    color:white;
+    width: 72px;
 
 }
 
-.sidebar mat-icon{
+.sidebar a {
 
-    color:inherit;
+    display: flex;
+
+    align-items: center;
+
+    gap: 16px;
+
+    padding: 14px 24px;
+
+    color: #CBD5E1;
+
+    text-decoration: none;
+
+    border-left: 4px solid transparent;
+
+    transition: all .25s ease;
+
+}
+
+.sidebar a:hover {
+
+    background: #1E293B;
+
+    border-left-color: #60A5FA;
+
+    color: white;
+
+}
+
+.sidebar a.active {
+
+    background: #2563EB;
+
+    border-left-color: #93C5FD;
+
+    color: white;
+
+    font-weight: 600;
+
+}
+
+.sidebar mat-icon {
+
+    color: inherit;
+
+    min-width: 24px;
+
+}
+
+.sidebar span {
+
+    white-space: nowrap;
+
+}
+
+.sidebar.collapsed a {
+
+    justify-content: center;
+
+    padding-left: 0;
+
+    padding-right: 0;
+
+}
+
+.sidebar.collapsed span {
+
+    display: none;
 
 }
