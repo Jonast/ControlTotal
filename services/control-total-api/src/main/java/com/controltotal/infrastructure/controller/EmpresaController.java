@@ -8,6 +8,7 @@ import com.controltotal.shared.response.ApiResponse;
 import com.controltotal.application.usecase.empresa.update.UpdateEmpresaUseCase;
 import com.controltotal.application.dto.request.UpdateEmpresaRequest;
 import com.controltotal.application.usecase.empresa.get.GetEmpresaByIdUseCase;
+import com.controltotal.application.usecase.empresa.delete.DeleteEmpresaUseCase;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -36,6 +37,7 @@ public class EmpresaController {
     private final ListEmpresasUseCase listEmpresasUseCase;
     private final UpdateEmpresaUseCase updateEmpresaUseCase;
     private final GetEmpresaByIdUseCase getEmpresaByIdUseCase;
+    private final DeleteEmpresaUseCase deleteEmpresaUseCase;
 
     @Operation(
             summary = "Crear empresa",
@@ -158,6 +160,35 @@ public class EmpresaController {
                 ApiResponse.success(
                         "Empresa obtenida correctamente",
                         response
+                )
+        );
+
+    }
+    @Operation(
+            summary = "Eliminar empresa",
+            description = "Elimina una empresa del sistema."
+    )
+    @ApiResponses({
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(
+                    responseCode = "200",
+                    description = "Empresa eliminada correctamente"
+            ),
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(
+                    responseCode = "404",
+                    description = "Empresa no encontrada"
+            )
+    })
+    @DeleteMapping("/{id}")
+    public ResponseEntity<ApiResponse<Void>> delete(
+            @PathVariable UUID id
+    ) {
+
+        deleteEmpresaUseCase.execute(id);
+
+        return ResponseEntity.ok(
+                ApiResponse.success(
+                        "Empresa eliminada correctamente",
+                        null
                 )
         );
 
