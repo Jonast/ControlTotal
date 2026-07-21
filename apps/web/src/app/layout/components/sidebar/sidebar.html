@@ -1,59 +1,75 @@
-<nav class="sidebar">
+<nav
+    class="sidebar"
+    [class.collapsed]="collapsed">
 
-    <a routerLink="/"
-       routerLinkActive="active">
+    <a
+        routerLink="/"
+        [routerLinkActiveOptions]="{ exact: true }"
+        routerLinkActive="active">
 
         <mat-icon>dashboard</mat-icon>
 
-        Dashboard
+        <span>Dashboard</span>
 
     </a>
 
-    <a routerLink="/empresas">
+    <a
+        routerLink="/empresas"
+        routerLinkActive="active">
 
         <mat-icon>business</mat-icon>
 
-        Empresas
+        <span>Empresas</span>
 
     </a>
 
-    <a routerLink="/sucursales">
+    <a
+        routerLink="/sucursales"
+        routerLinkActive="active">
 
         <mat-icon>store</mat-icon>
 
-        Sucursales
+        <span>Sucursales</span>
 
     </a>
 
-    <a routerLink="/productos">
+    <a
+        routerLink="/productos"
+        routerLinkActive="active">
 
         <mat-icon>inventory_2</mat-icon>
 
-        Productos
+        <span>Productos</span>
 
     </a>
 
-    <a routerLink="/inventario">
+    <a
+        routerLink="/inventario"
+        routerLinkActive="active">
 
         <mat-icon>warehouse</mat-icon>
 
-        Inventario
+        <span>Inventario</span>
 
     </a>
 
-    <a routerLink="/ventas">
+    <a
+        routerLink="/ventas"
+        routerLinkActive="active">
 
         <mat-icon>point_of_sale</mat-icon>
 
-        Ventas
+        <span>Ventas</span>
 
     </a>
 
-    <a routerLink="/reportes">
+    <a
+        routerLink="/reportes"
+        routerLinkActive="active">
 
         <mat-icon>bar_chart</mat-icon>
 
-        Reportes
+        <span>Reportes</span>
 
     </a>
 
