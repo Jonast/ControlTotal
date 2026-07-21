@@ -53,5 +53,12 @@ update(
   );
 
 }
+delete(id: string): Observable<ApiResponse<void>> {
+
+  return this.http.delete<ApiResponse<void>>(
+    `${this.endpoint}/${id}`
+  );
+
+}
 
 }
