@@ -1,0 +1,128 @@
+<app-page-header
+  [title]="isEdit ? 'Editar Sucursal' : 'Nueva Sucursal'"
+  [subtitle]="isEdit ? 'Actualización de sucursal' : 'Registro de sucursal'">
+</app-page-header>
+
+<div class="form-container">
+
+  <mat-card>
+
+    <mat-card-content>
+
+      <form
+        class="form-grid"
+        [formGroup]="form"
+        (ngSubmit)="guardar()">
+
+        @if (!isEdit) {
+
+          <mat-form-field appearance="outline">
+
+            <mat-label>Empresa</mat-label>
+
+            <mat-select formControlName="empresaId">
+
+              @for (empresa of empresas; track empresa.id) {
+
+                <mat-option [value]="empresa.id">
+                  {{ empresa.nombreComercial }}
+                </mat-option>
+
+              }
+
+            </mat-select>
+
+          </mat-form-field>
+
+        }
+        <mat-form-field appearance="outline">
+
+          <mat-label>Código</mat-label>
+
+          <input
+            matInput
+            formControlName="codigo">
+
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+
+          <mat-label>Nombre</mat-label>
+
+          <input
+            matInput
+            formControlName="nombre">
+
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+
+          <mat-label>Dirección</mat-label>
+
+          <input
+            matInput
+            formControlName="direccion">
+
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+
+          <mat-label>Comuna</mat-label>
+
+          <input
+            matInput
+            formControlName="comuna">
+
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+
+          <mat-label>Teléfono</mat-label>
+
+          <input
+            matInput
+            type="tel"
+            formControlName="telefono">
+
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+
+          <mat-label>Email</mat-label>
+
+          <input
+            matInput
+            type="email"
+            formControlName="email">
+
+        </mat-form-field>
+
+        <div class="actions">
+
+          <button
+            mat-stroked-button
+            type="button"
+            (click)="cancelar()">
+
+            Cancelar
+
+          </button>
+
+          <button
+            mat-raised-button
+            color="primary"
+            type="submit">
+
+            {{ isEdit ? 'Actualizar' : 'Guardar' }}
+
+          </button>
+
+        </div>
+
+      </form>
+
+    </mat-card-content>
+
+  </mat-card>
+
+</div>
