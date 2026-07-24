@@ -19,6 +19,12 @@ export const routes: Routes = [
         loadChildren: () =>
           import('./features/empresa/empresa.routes')
             .then(r => r.EMPRESA_ROUTES)
+      },
+      {
+        path: 'sucursales',
+        loadChildren: () =>
+          import('./features/sucursal/sucursal.routes')
+            .then(r => r.SUCURSAL_ROUTES)
       }
 
     ]
